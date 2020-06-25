@@ -5,12 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Form | VinaEnter Edu</title>
-<link href="style.css" type="text/css" rel="stylesheet" />
+<link href="<%=request.getContextPath() %>/baihoclop/style.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 	<div class="wrapper">
 		<h1>Thông tin Mr.VinaEnter</h1>
-		<form action="<%=request.getContextPath() %>/reg-user" method="post">
+		<form action="<%=request.getContextPath() %>/reg-user-forward" method="post">
 			<p>
 				<label>Họ tên:</label> <input type="text" name="hoten" id="hoten" value="VinaEnter Edu" />
 			</p>

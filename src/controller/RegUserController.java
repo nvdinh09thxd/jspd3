@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,15 +40,9 @@ public class RegUserController extends HttpServlet {
 		String hoten = request.getParameter("hoten");
 		int tuoi = Integer.parseInt(request.getParameter("tuoi"));
 		String chieucao = request.getParameter("chieucao");
-		/*
 		out.print("Họ tên: " + hoten + "<br />");
 		out.print("Tuổi: " + tuoi + "<br />");
 		out.print("Chiều cao: " + chieucao + "<br />");
-		*/
-		request.setAttribute("hoten", hoten);
-		request.setAttribute("tuoi", tuoi);
-		RequestDispatcher rd = request.getRequestDispatcher("/baihoclop/info.jsp");
-		rd.forward(request, response);
 	}
 
 }
