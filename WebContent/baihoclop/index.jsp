@@ -10,7 +10,7 @@
 <body>
 	<div class="wrapper">
 		<h1>Thông tin Mr.VinaEnter</h1>
-		<form action="<%=request.getContextPath() %>/reg-user-forward" method="post">
+		<form action="<%=request.getContextPath() %>/reg-user" method="post">
 			<p>
 				<label>Họ tên:</label> <input type="text" name="hoten" id="hoten" value="VinaEnter Edu" />
 			</p>
