@@ -54,7 +54,7 @@
 					var banKinh = $("#bankinh").val();
 					var dienTich = $("#dientich").val();
 					if((banKinh=="" && dienTich=="") ||(banKinh!="" && dienTich!="")){
-						alert("Vui lòng nhập lại!");
+						alert("Vui lòng nhập một trong hai giá trị!");
 						return false;
 					}
 			});

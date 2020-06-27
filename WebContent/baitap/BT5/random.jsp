@@ -8,10 +8,11 @@
 </head>
 <body>
 	<%
-		int soNgauNhien = (int) request.getAttribute("songaunhien");
-		int b = soNgauNhien % 2;
+		if (request.getAttribute("songaunhien") != null) {
+			int soNgauNhien = (int) request.getAttribute("songaunhien");
+			int b = soNgauNhien % 2;
 	%>
-	<p>	
+	<p>
 		Số vừa tạo ra là:<%=soNgauNhien%>
 	</p>
 
@@ -24,6 +25,7 @@
 	%>
 	<p>Đây là số lẻ</p>
 	<%
+		}
 		}
 	%>
 </body>

@@ -20,8 +20,8 @@ public class ThayTheController extends HttpServlet {
 		String chuoigoc = request.getParameter("chuoigoc");
 		String tugoc = request.getParameter("tugoc");
 		String tuthaythe = request.getParameter("tuthaythe");
-		if (chuoigoc == null || tugoc == null || tuthaythe == null) {
-			response.sendRedirect(request.getContextPath() + "/baitap/BT4/BT4.jsp?err=0");
+		if (chuoigoc == null || tugoc == null || tuthaythe == null) {//Nếu chạy từ file servlet thì chuyển hướng sang file jsp
+			response.sendRedirect(request.getContextPath() + "/baitap/BT4/BT4.jsp");
 		} else {
 			String chuoithaythe = chuoigoc.replace(tugoc, tuthaythe);
 			request.setAttribute("chuoigoc", chuoigoc);

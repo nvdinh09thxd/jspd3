@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class HinhTronController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final double PI = 3.14;
 
 	public HinhTronController() {
 		super();
@@ -19,7 +20,6 @@ public class HinhTronController extends HttpServlet {
 			throws ServletException, IOException {
 		String banKinh = request.getParameter("bankinh");
 		String dienTich = request.getParameter("dientich");
-		double PI = 3.14;
 		double dblBanKinh;
 		double dblDienTich;
 		if (banKinh != "") {
