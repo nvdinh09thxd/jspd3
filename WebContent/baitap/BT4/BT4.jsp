@@ -9,23 +9,18 @@
 			rel="stylesheet" type="text/css">
 		<link href="<%=request.getContextPath()%>/baitap/BT4/css/style.css"
 			rel="stylesheet" type="text/css">
-		<script src="<%=request.getContextPath()%>/baitap/BT4/js/jquery-3.3.1.min.js"></script>
-		<style>
-			.errorMessage {
-				color: red;
-			}
-		</style>
 	</head>
 	<body>
 		<div class="wrapper">
-			<h2>Thay thế chuỗi</h2>
 			<%
+				String err = (String) request.getParameter("err");
 				String chuoigoc = (String) request.getAttribute("chuoigoc");
 				String tugoc = (String) request.getAttribute("tugoc");
 				String tuthaythe = (String) request.getAttribute("tuthaythe");
 				String chuoithaythe = (String) request.getAttribute("chuoithaythe");
 			%>
-			<form action="<%=request.getContextPath() %>/thay-the" method="get">
+			<h2>Thay thế chuỗi</h2>
+			<form action="<%=request.getContextPath() %>/thay-the" method="post">
 				<p>Đoạn văn gốc</p>
 				<textarea rows="3" id="chuoigoc" name="chuoigoc"><%if(chuoigoc!=null) out.print(chuoigoc); %></textarea><br /> 
 				<label>Từ gốc: </label> <input type="text" id="tugoc" name="tugoc" value="<%if(tugoc!=null) out.print(tugoc); %>" />
@@ -34,20 +29,10 @@
 				<div class="buttonHolder">
 					<input type="submit" value="Thực hiện" />
 				</div>
-				<p class="errorMessage"></p>
 			</form>
+			<%
+				if("0".equals(err)) out.print("<p style='color: red'>Vui lòng nhập đầy đủ thông tin vào!</p>");
+			%>
 		</div>
-		<script type="text/javascript">
-			$("form").submit(function(){
-				var chuoigoc = $("#chuoigoc").val();
-				var tugoc = $("#tugoc").val();
-				var tuthaythe = $("#tuthaythe").val();
-				if (chuoigoc == "" || tugoc == "" || tuthaythe == ""){
-					$(".errorMessage").text("Nhập đầy đủ thông tin vào!");
-					return false;
-				}
-				
-			})
-		</script>
 	</body>
 </html>

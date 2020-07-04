@@ -17,11 +17,20 @@ public class ThayTheController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("baitap/BT4/BT4.jsp");
+		rd.forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html");
+		response.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("utf-8");
 		String chuoigoc = request.getParameter("chuoigoc");
 		String tugoc = request.getParameter("tugoc");
 		String tuthaythe = request.getParameter("tuthaythe");
-		if (chuoigoc == null || tugoc == null || tuthaythe == null) {//Nếu chạy từ file servlet thì chuyển hướng sang file jsp
-			response.sendRedirect(request.getContextPath() + "/baitap/BT4/BT4.jsp");
+		if (chuoigoc == "" || tugoc == "" || tuthaythe == "") {
+			response.sendRedirect(request.getContextPath() + "/baitap/BT4/BT4.jsp?err=0");
 		} else {
 			String chuoithaythe = chuoigoc.replace(tugoc, tuthaythe);
 			request.setAttribute("chuoigoc", chuoigoc);
@@ -31,10 +40,6 @@ public class ThayTheController extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/baitap/BT4/BT4.jsp");
 			rd.forward(request, response);
 		}
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 	}
 
 }

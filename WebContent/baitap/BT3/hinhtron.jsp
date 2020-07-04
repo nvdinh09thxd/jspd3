@@ -7,8 +7,6 @@
 		<title>Hình tròn</title>
 		<link href="<%=request.getContextPath()%>/baitap/BT3/css/reset.css" rel="stylesheet" type="text/css">
 		<link href="<%=request.getContextPath()%>/baitap/BT3/css/style.css" rel="stylesheet" type="text/css">
-		<script src="<%=request.getContextPath()%>/baitap/BT3/js/jquery-3.3.1.min.js"></script>
-		<script src="<%=request.getContextPath()%>/baitap/BT3/js/jquery.validate.min.js"></script>
 		<style>
 			.error {
 				color: red;
@@ -17,48 +15,23 @@
 	</head>
 	<body>
 		<%
+			String err = request.getParameter("err");
 			String banKinh = (String) request.getAttribute("bankinh");
 			String dienTich = (String) request.getAttribute("dientich");
 		%>
 		<div class="wrapper">
 			<h2>Hình tròn</h2>
-			<form action="<%=request.getContextPath()%>/hinh-tron" method="GET">
+			<form action="<%=request.getContextPath()%>/hinh-tron" method="post">
 				<label>Bán kính:</label>
 				<input type="text" id="bankinh" name="bankinh" value="<%if(banKinh!=null) out.print(banKinh);%>" /><br /> <br />
 				<label>Diện tích:</label>
 				<input type="text" id="dientich" name="dientich" value="<%if(dienTich!=null) out.print(dienTich);%>" /><br /> <br />
 				<input type="submit" value="Tính" />
 			</form>
+			<%
+				if("1".equals(err)) out.print("<p style='color: red'>Nhập sai định dạng số!</p>");
+				else if("2".equals(err)) out.print("<p style='color: red'>Vui lòng nhập một trong hai giá trị!</p>");
+			%>
 		</div>
-		<script type="text/javascript">
-		$(function() {
-			$('form').validate({
-				rules : {
-					"bankinh" : {
-						number : true,
-					},
-					"dientich" : {
-						number : true,
-					},
-				},
-				messages : {
-					"bankinh" : {
-						number : "Phải nhập số!",
-					},
-					"dientich" : {
-						number : "Phải nhập số!",
-					},
-				},
-			}),
-			$('form').submit(function(){
-					var banKinh = $("#bankinh").val();
-					var dienTich = $("#dientich").val();
-					if((banKinh=="" && dienTich=="") ||(banKinh!="" && dienTich!="")){
-						alert("Vui lòng nhập một trong hai giá trị!");
-						return false;
-					}
-			});
-		})
-		</script>
 	</body>
 </html>

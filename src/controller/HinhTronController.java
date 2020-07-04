@@ -18,28 +18,48 @@ public class HinhTronController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String banKinh = request.getParameter("bankinh");
-		String dienTich = request.getParameter("dientich");
-		double dblBanKinh;
-		double dblDienTich;
-		if (banKinh != "") {
-			dblBanKinh = (double) Math.round(Double.parseDouble(banKinh) * 100) / 100;
-			dblDienTich = dblBanKinh * dblBanKinh * PI;
-			dblDienTich = (double) Math.round(dblDienTich * 100) / 100;
-			request.setAttribute("bankinh", Double.toString(dblBanKinh));
-			request.setAttribute("dientich", Double.toString(dblDienTich));
-		} else {
-			dblDienTich = (double) Math.round(Double.parseDouble(dienTich) * 100) / 100;
-			dblBanKinh = Math.sqrt(dblDienTich / PI);
-			dblBanKinh = (double) Math.round(dblBanKinh * 100) / 100;
-			request.setAttribute("bankinh", Double.toString(dblBanKinh));
-			request.setAttribute("dientich", Double.toString(dblDienTich));
-		}
 		RequestDispatcher rd = request.getRequestDispatcher("baitap/BT3/hinhtron.jsp");
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String banKinh = request.getParameter("bankinh");
+		String dienTich = request.getParameter("dientich");
+		if ((banKinh == "" && dienTich == "") || (banKinh != "" && dienTich != "")) {
+			request.setAttribute("bankinh", banKinh);
+			request.setAttribute("dientich", dienTich);
+			RequestDispatcher rd = request.getRequestDispatcher("baitap/BT3/hinhtron.jsp?err=2");
+			rd.forward(request, response);
+			return;
+		}
+		double dblBanKinh;
+		double dblDienTich;
+		try {
+			if (banKinh != "") {
+				dblBanKinh = (double) Math.round(Double.parseDouble(banKinh) * 100) / 100;
+				dblDienTich = dblBanKinh * dblBanKinh * PI;
+				dblDienTich = (double) Math.round(dblDienTich * 100) / 100;
+				request.setAttribute("bankinh", Double.toString(dblBanKinh));
+				request.setAttribute("dientich", Double.toString(dblDienTich));
+			} else {
+				dblDienTich = (double) Math.round(Double.parseDouble(dienTich) * 100) / 100;
+				dblBanKinh = Math.sqrt(dblDienTich / PI);
+				dblBanKinh = (double) Math.round(dblBanKinh * 100) / 100;
+				request.setAttribute("bankinh", Double.toString(dblBanKinh));
+				request.setAttribute("dientich", Double.toString(dblDienTich));
+			}
+
+			RequestDispatcher rd = request.getRequestDispatcher("baitap/BT3/hinhtron.jsp");
+			rd.forward(request, response);
+		} catch (NumberFormatException e) {
+			if (banKinh != "") {
+				request.setAttribute("bankinh", banKinh);
+			} else {
+				request.setAttribute("dientich", dienTich);
+			}
+			RequestDispatcher rd = request.getRequestDispatcher("baitap/BT3/hinhtron.jsp?err=1");
+			rd.forward(request, response);
+		}
 	}
 }
