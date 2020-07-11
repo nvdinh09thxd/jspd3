@@ -8,16 +8,15 @@
 </head>
 <body>
 	<%
-		if(request.getAttribute("hoten") != null 
-			&& request.getAttribute("tuoi") != null){
-			String hoten = (String) request.getAttribute("hoten");
-			int tuoi = (int) request.getAttribute("tuoi");
+		String hoten = (String) request.getAttribute("hoten");
+		String tuoi = (String) request.getAttribute("tuoi");
+		if(hoten != null && tuoi != null){
 	%>
 		<h2>Thông tin người dùng</h2>
 		<p>Họ tên: <%=hoten %></p>
 		<p>Tuổi: <%=tuoi %></p>
 	<%
-	} else {
+		} else {
 	%>
 		<p style="color: red">Không có thông tin người dùng!</p>
 	<%} %>

@@ -19,16 +19,7 @@ public class RegUserController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html");
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		PrintWriter out = response.getWriter();
-		String hoten = request.getParameter("hoten");
-		int tuoi = Integer.parseInt(request.getParameter("tuoi"));
-		String chieucao = request.getParameter("chieucao");
-		out.print("Họ tên: " + hoten + "<br />");
-		out.print("Tuổi: " + tuoi + "<br />");
-		out.print("Chiều cao: " + chieucao + "<br />");
+		request.getRequestDispatcher("/baihoclop/index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

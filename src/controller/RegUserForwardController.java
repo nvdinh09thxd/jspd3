@@ -31,7 +31,7 @@ public class RegUserForwardController extends HttpServlet {
 		String hoten = request.getParameter("hoten");
 		int tuoi = Integer.parseInt(request.getParameter("tuoi"));
 		request.setAttribute("hoten", hoten);
-		request.setAttribute("tuoi", tuoi);
+		request.setAttribute("tuoi", Integer.toString(tuoi));
 		RequestDispatcher rd = request.getRequestDispatcher("/baihoclop/info.jsp");
 		rd.forward(request, response);
 	}

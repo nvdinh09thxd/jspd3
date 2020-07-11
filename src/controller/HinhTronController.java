@@ -33,31 +33,27 @@ public class HinhTronController extends HttpServlet {
 			rd.forward(request, response);
 			return;
 		}
-		double dblBanKinh;
-		double dblDienTich;
 		try {
+			double dblBanKinh;
+			double dblDienTich;
 			if (banKinh != "") {
-				dblBanKinh = (double) Math.round(Double.parseDouble(banKinh) * 100) / 100;
+				dblBanKinh = (double) Math.round(Double.parseDouble(banKinh) * 100) / 100;// làm tròn 2 chữ số thập phân
 				dblDienTich = dblBanKinh * dblBanKinh * PI;
-				dblDienTich = (double) Math.round(dblDienTich * 100) / 100;
-				request.setAttribute("bankinh", Double.toString(dblBanKinh));
-				request.setAttribute("dientich", Double.toString(dblDienTich));
+				dblDienTich = (double) Math.round(dblDienTich * 100) / 100;// làm tròn 2 chữ số thập phân
 			} else {
-				dblDienTich = (double) Math.round(Double.parseDouble(dienTich) * 100) / 100;
+				dblDienTich = (double) Math.round(Double.parseDouble(dienTich) * 100) / 100;// làm tròn 2 chữ số thập
+																							// phân
 				dblBanKinh = Math.sqrt(dblDienTich / PI);
-				dblBanKinh = (double) Math.round(dblBanKinh * 100) / 100;
-				request.setAttribute("bankinh", Double.toString(dblBanKinh));
-				request.setAttribute("dientich", Double.toString(dblDienTich));
+				dblBanKinh = (double) Math.round(dblBanKinh * 100) / 100;// làm tròn 2 chữ số thập phân
 			}
 
+			request.setAttribute("bankinh", Double.toString(dblBanKinh));
+			request.setAttribute("dientich", Double.toString(dblDienTich));
 			RequestDispatcher rd = request.getRequestDispatcher("baitap/BT3/hinhtron.jsp");
 			rd.forward(request, response);
 		} catch (NumberFormatException e) {
-			if (banKinh != "") {
-				request.setAttribute("bankinh", banKinh);
-			} else {
-				request.setAttribute("dientich", dienTich);
-			}
+			request.setAttribute("bankinh", banKinh);
+			request.setAttribute("dientich", dienTich);
 			RequestDispatcher rd = request.getRequestDispatcher("baitap/BT3/hinhtron.jsp?err=1");
 			rd.forward(request, response);
 		}

@@ -14,7 +14,7 @@
 		</style>
 	</head>
 	<body>
-		<form action="<%=request.getContextPath()%>/hinh-chu-nhat" method="get">
+		<form action="<%=request.getContextPath()%>/hinh-chu-nhat" method="post">
 			<label>Chiều dài</label> 
 			<input type="text" name="chieudai" id="chieudai" /><br /> <br /> 
 			<label>Chiều rộng</label> 
@@ -22,7 +22,7 @@
 			<input type="submit" value="Tinh" />
 		</form>
 		<script type="text/javascript">
-			$(() => {
+			$(function() {
 				$('form').validate({
 					rules : {
 						"chieudai" : {
@@ -45,7 +45,7 @@
 						},
 					},
 				}),
-				$('form').submit(() => {
+				$('form').submit(function() {
 					var chieudai = parseInt($("#chieudai").val());
 					var chieurong = parseInt($("#chieurong").val());
 					

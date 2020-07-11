@@ -29,13 +29,15 @@ public class ThayTheController extends HttpServlet {
 		String chuoigoc = request.getParameter("chuoigoc");
 		String tugoc = request.getParameter("tugoc");
 		String tuthaythe = request.getParameter("tuthaythe");
+		request.setAttribute("chuoigoc", chuoigoc);
+		request.setAttribute("tugoc", tugoc);
+		request.setAttribute("tuthaythe", tuthaythe);
 		if (chuoigoc == "" || tugoc == "" || tuthaythe == "") {
-			response.sendRedirect(request.getContextPath() + "/baitap/BT4/BT4.jsp?err=0");
+			RequestDispatcher rd = request.getRequestDispatcher("/baitap/BT4/BT4.jsp?err=0");
+			rd.forward(request, response);
+			return;
 		} else {
 			String chuoithaythe = chuoigoc.replace(tugoc, tuthaythe);
-			request.setAttribute("chuoigoc", chuoigoc);
-			request.setAttribute("tugoc", tugoc);
-			request.setAttribute("tuthaythe", tuthaythe);
 			request.setAttribute("chuoithaythe", chuoithaythe);
 			RequestDispatcher rd = request.getRequestDispatcher("/baitap/BT4/BT4.jsp");
 			rd.forward(request, response);

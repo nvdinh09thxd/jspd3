@@ -17,7 +17,7 @@ public class HinhChuNhatController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPost(request, response);
+		request.getRequestDispatcher("baitap/BT1/BT1a.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
